@@ -1,0 +1,122 @@
+<?php namespace ProcessWire;
+
+/**
+ * ProcessWire 'Hello world' demonstration module
+ *
+ * Demonstrates the Module interface and how to add hooks.
+ * 
+ * See README file for further links regarding module development.
+ * 
+ * This file is licensed under the MIT license
+ * https://processwire.com/about/license/mit/
+ * 
+ * ProcessWire 3.x, Copyright 2016 by Ryan Cramer
+ * https://processwire.com
+ *
+ */
+
+require_once 'StravaApi.php';
+
+
+
+
+
+
+class GetStravaSegments extends WireData implements Module {
+
+	/**
+	 * getStravaSegments gets segmentsdata from strava based on id
+	 *
+	 * @return array
+	 *
+	 */
+	public static function getModuleInfo() {
+
+		return array(
+
+			// The module's title, typically a little more descriptive than the class name
+			'title' => 'Get Strava segments data', 
+
+			// version number 
+			'version' => 1, 
+
+			// summary is brief description of what this module is
+			'summary' => 'gets segmentsdata from strava based on id.',
+			
+			// This is usually what you want for modules that attach hooks. 
+			'singular' => true, 
+			'autoload' => true, 
+		
+			// Optional font-awesome icon name, minus the 'fa-' part
+			'icon' => 'smile-o', 
+			);
+	}
+
+
+	public function init() {
+
+		$this->pages->addHookBefore('save', $this, 'getRouteData'); 
+		$this->pages->addHookBefore('save', $this, 'getSegmentsData'); 
+
+	}
+
+	/**
+	 * update route data from strava
+	 * 
+	 * @param HookEvent $event
+	 *
+	 */
+	public function getRouteData($event) {
+		/** @var Page $page */
+		$page = $event->arguments[0];
+        if($page->template == 'event') {
+            $strava = $this->connectToStrava()->get('routes/' . $page->routeID);
+            $page->title =  $strava->name;
+            $page->about = $strava->description;
+            $page->distance = $strava->distance;
+            $page->elevation = $strava->elevation_gain;
+            $this->message("Fetched route data: {$strava->name}.");
+        } 
+        
+	}
+
+    /**
+	 * update segment data from strava
+	 * 
+	 * @param HookEvent $event
+	 *
+	 */
+	public function getSegmentsData($event) {
+		/** @var Page $page */
+		$page = $event->arguments[0];
+        if($page->template == 'event') {
+            foreach($page->segments as $item) {
+                $strava = $this->connectToStrava()->get('segments/' . $item->{segmentID});
+                $item->set('title', $strava->name);
+                $item->{distance} = $strava->distance;
+                $item->{elevation} = $strava->total_elevation_gain;
+                $item->save();
+                $this->message("Fetched segments data: {$strava->name}.");
+            }
+        } 
+	}
+    
+	/**
+	 * get access to strava
+	 */
+    private function connectToStrava() {
+        $clientId       = 3493;
+        $clientSecret   = 'f2cef53be42d5e9e1190ff8252f2614620d3997d';
+        $accessToken    = 'c3d6701aca3688906be1e701eb73f82a41b75e6a';
+        $redirect       = 'localhost:8888/runduro';
+        $api            = new StravaApi(
+           $clientId,
+           $clientSecret
+        );
+        $api->setAccessToken($accessToken);
+        
+        return $api;
+    }
+
+
+}

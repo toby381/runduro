@@ -1,0 +1,37 @@
+2018-07-22 18:38:33	?	?	Saved module 'SystemUpdater' config data
+2018-07-22 18:38:33	?	?	Saved module info caches
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Saved module info caches
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Installed module 'ProcessRecentPages'
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Saved module info caches
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Saved module 'SystemUpdater' config data
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Saved module info caches
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Installed module 'AdminThemeUikit'
+2018-07-22 18:38:34	guest	http://localhost:8888/runduro/http404/	Saved module info caches
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Saved module 'ProcessProfile' config data
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Saved module info caches
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Installed module 'ProcessLogger'
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Saved module info caches
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Installed module 'InputfieldIcon'
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Saved module info caches
+2018-07-22 18:38:56	guest	http://localhost:8888/runduro/processwire/login/	Saved module 'SystemUpdater' config data
+2018-07-22 18:39:00	guest	http://localhost:8888/runduro/	Saved module 'SystemUpdater' config data
+2018-07-22 18:39:04	?	?	Saved module 'SystemUpdater' config data
+2018-07-22 18:39:04	?	?	Saved module info caches
+2018-07-22 18:39:04	guest	http://localhost:8888/runduro/processwire/login/	Saved module 'SystemUpdater' config data
+2018-07-22 18:39:05	admin	http://localhost:8888/runduro/processwire/?login=1	Saved module 'SystemUpdater' config data
+2018-07-22 18:39:06	?	?	Saved module info caches
+2018-07-22 18:39:06	?	?	Saved module 'SystemUpdater' config data
+2018-07-22 18:39:06	?	?	Saved module info caches
+2018-07-22 18:39:06	admin	http://localhost:8888/runduro/processwire/page/?login=1	Saved module 'SystemUpdater' config data
+2018-07-23 19:19:24	admin	http://localhost:8888/runduro/processwire/module/	Saved module 'FieldtypeRepeater' config data
+2018-07-23 19:19:24	admin	http://localhost:8888/runduro/processwire/module/	Installed module 'InputfieldRepeater'
+2018-07-23 19:19:24	admin	http://localhost:8888/runduro/processwire/module/	Installed module 'FieldtypeRepeater'
+2018-07-23 19:19:24	admin	http://localhost:8888/runduro/processwire/module/	Saved module info caches
+2018-07-23 19:19:33	admin	http://localhost:8888/runduro/processwire/module/edit?name=FieldtypeRepeater	Saved module 'FieldtypeRepeater' config data
+2018-07-24 16:38:53	admin	http://localhost:8888/runduro/processwire/module/?reset=1	Saved module info caches
+2018-07-24 16:38:53	admin	http://localhost:8888/runduro/processwire/module/?reset=1	Saved module info caches
+2018-07-24 16:38:53	admin	http://localhost:8888/runduro/processwire/module/?reset=1	Saved module info caches
+2018-07-24 16:41:04	admin	http://localhost:8888/runduro/processwire/module/	Installed module 'GetStravaSegments'
+2018-07-24 16:41:05	admin	http://localhost:8888/runduro/processwire/module/	Saved module info caches
+2018-07-24 16:41:22	admin	http://localhost:8888/runduro/processwire/module/edit?name=GetStravaSegments	Saved module 'GetStravaSegments' config data
+2018-07-24 16:41:26	admin	http://localhost:8888/runduro/processwire/module/edit?name=GetStravaSegments&collapse_info=1	Saved module 'GetStravaSegments' config data

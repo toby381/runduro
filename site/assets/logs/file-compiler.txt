@@ -1,0 +1,4 @@
+2018-07-22 18:39:00	guest	http://localhost:8888/runduro/	Compiled file: /site/templates/home.php
+2018-07-24 22:05:14	admin	http://localhost:8888/runduro/	Compiled file: /site/templates/basic-page.php
+2018-07-24 22:10:25	admin	http://localhost:8888/runduro/	Compiled file: /site/templates/basic-page.php
+2018-07-24 22:10:55	admin	http://localhost:8888/runduro/	Compiled file: /site/templates/home.php
