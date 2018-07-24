@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title><?php echo $page->title; ?></title>
-		<link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates?>styles/main.css" />
-	</head>
-	<body>
-		<h1><?php echo $page->title; ?></h1>
-        <div>
-        <?php foreach($page->segments as $item) {
-        ?>
-                <p><?php echo $item->{title};?></p>
-                <p>Distance: <?php echo $item->{distance};?></p>
-                <p>Elevation: <?php echo $item->{elevation};?></p>
-            <?php } 
-            ?>
+<?php include(\ProcessWire\wire('files')->compile(\ProcessWire\wire("config")->paths->root . "site/templates/header.php",array('includes'=>true,'namespace'=>true,'modules'=>true,'skipIfNamespace'=>true))); ?>
+
+<section class="content">
+    <p><?php echo $page->about; ?></p>
+    <p>Total distance: <?php echo $page->distance; ?></p>
+    <p>Total elevation: <?php echo $page->elevation; ?></p>
+    <p><a class="strava-link"  target="_blank"  href="https://www.strava.com/routes/<?php echo $page->routeID ?>">Show route on Strava</a></p>
+    
+    <div class="segmentlist">
+        <h2>Segmenter / </h2>
+    <?php
+    $counter = 0;
+    foreach($page->segments as $item) {
+        $counter++;
+    ?>
+        <div class="segment">
+            <h2><?php echo $counter . '::'. $item->{title};?></h2>
+            <p>Distance: <?php echo $item->{distance};?></p>
+            <p>Elevation: <?php echo $item->{elevation};?></p>
+            <p><a class="strava-link" target="_blank" href="https://www.strava.com/segments/<?php echo $item->{segmentID} ?>">Show on Strava</a></p>
         </div>
-		<?php if($page->editable()) echo "<p><a href='$page->editURL'>Edit</a></p>"; ?>
-	
-	</body>
-</html>
+    <?php 
+    } 
+    ?>
+    </div>
+</section>
+
+
+<?php include(\ProcessWire\wire('files')->compile(\ProcessWire\wire("config")->paths->root . "site/templates/footer.php",array('includes'=>true,'namespace'=>true,'modules'=>true,'skipIfNamespace'=>true))); ?>
