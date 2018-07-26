@@ -54,7 +54,8 @@ class GetStravaSegments extends WireData implements Module {
 
 
 	public function init() {
-
+        $this->addHookMethod("Page::strava", $this, 'keepLoggedInStrava');
+        $this->addHookMethod("Page::activities", $this, 'getUserActivities');
 		$this->pages->addHookBefore('save', $this, 'getRouteData'); 
 		$this->pages->addHookBefore('save', $this, 'getSegmentsData'); 
 
@@ -104,7 +105,7 @@ class GetStravaSegments extends WireData implements Module {
 	/**
 	 * get access to strava
 	 */
-    private function connectToStrava() {
+    private function connectToStrava($noaccess = false) {
         $clientId       = 3493;
         $clientSecret   = 'f2cef53be42d5e9e1190ff8252f2614620d3997d';
         $accessToken    = 'c3d6701aca3688906be1e701eb73f82a41b75e6a';
@@ -113,10 +114,46 @@ class GetStravaSegments extends WireData implements Module {
            $clientId,
            $clientSecret
         );
-        $api->setAccessToken($accessToken);
+        if(!$noaccess) {
+            $api->setAccessToken($accessToken);
+        }
         
         return $api;
     }
+    
+    public function keepLoggedInStrava($event) {
+        $page = $event->object;
+        $type = $event->arguments(0);
+        $api = $this->connectToStrava();
+        if( !isset($_GET["code"]) && !isset($_COOKIE["code"]) ) {
+            $loginURL = $api->authenticationUrl($page->httpUrl);
+        } else if(isset($_COOKIE["code"])) {
+            $strava_result = $api->tokenExchange($_COOKIE["code"]);
+        } else {
+            $code=$_GET["code"];
+            setcookie("code", $code, time() + (86400 * 30), "/");
 
+            $strava_result = $api->tokenExchange($code);
+
+        }
+
+        if($type == 'url') {
+            $event->return = $loginURL;
+        } else if($type == 'user') {
+            $event->return = $strava_result;
+        }
+
+    }
+    
+    public function getUserActivities($event) {
+        $page = $event->object;
+        $api = $this->connectToStrava(true);
+        $code = isset($_COOKIE["code"]) ? $_COOKIE["code"] : $_GET["code"];
+        $user = $api->tokenExchange($code);
+        $api->setAccessToken($user->access_token);
+        $activities_result = $api->get('athlete/activities?before='.strtotime($page->enddate).'&after='.strtotime($page->startdate));
+       
+        $event->return = $activities_result;
+    }
 
 }

@@ -2,6 +2,8 @@
 
 <section class="content">
     <p><?php echo $page->about; ?></p>
+    <p>Start date: <?php echo $page->startdate;?></p>
+    <p>End date: <?php echo $page->enddate;?></p>
     <p>Total distance: <?php echo $page->distance; ?></p>
     <p>Total elevation: <?php echo $page->elevation; ?></p>
     <p><a class="strava-link"  target="_blank"  href="https://www.strava.com/routes/<?php echo $page->routeID ?>">Show route on Strava</a></p>
@@ -22,6 +24,17 @@
     <?php 
     } 
     ?>
+    </div>
+    
+    <div>
+    <?php
+    if(isset($_COOKIE["code"])) {
+        foreach($page->activities() as $item) {?>
+            <li><?php echo $item->name ?></li>
+        <?php 
+        } 
+    }
+        ?>
     </div>
 </section>
 

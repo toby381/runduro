@@ -20,3 +20,9 @@
 2018-07-24 23:05:50	admin	http://localhost:8888/runduro/test/	Compiled file: /site/templates/event.php
 2018-07-24 23:07:21	admin	http://localhost:8888/runduro/test/	Compiled file: /site/templates/event.php
 2018-07-24 23:07:52	admin	http://localhost:8888/runduro/test/	Compiled file: /site/templates/event.php
+2018-07-25 20:49:12	admin	http://localhost:8888/runduro/test/	Maintenance/Copy new version of source file to target file: /site/templates/basic-page.php => /site/assets/cache/FileCompiler/site/templates/basic-page.php
+2018-07-25 22:31:34	admin	http://localhost:8888/runduro/test/?state=&code=cc6a09853dcc826cd21c80dfc19b61d200fcafb6&scope=	Compiled file: /site/templates/event.php
+2018-07-25 22:56:10	admin	http://localhost:8888/runduro/test/?state=&code=cc6a09853dcc826cd21c80dfc19b61d200fcafb6&scope=	Compiled file: /site/templates/event.php
+2018-07-26 00:03:09	admin	http://localhost:8888/runduro/test/	Compiled file: /site/templates/event.php
+2018-07-26 00:03:59	admin	http://localhost:8888/runduro/test/	Compiled file: /site/templates/event.php
+2018-07-26 00:04:44	admin	http://localhost:8888/runduro/test/	Compiled file: /site/templates/event.php
