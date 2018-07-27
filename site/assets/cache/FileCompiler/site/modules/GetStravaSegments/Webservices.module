@@ -1,0 +1,38 @@
+<?php    
+class Webservices extends \ProcessWire\WireData implements \ProcessWire\Module {
+
+	public static function getModuleInfo() {
+
+		return array(
+			'title' => 'Webservices', 
+			'version' => 1, 
+			'summary' => '',
+			'singular' => true, 
+			'autoload' => true, 
+			'icon' => 'smile-o', 
+			);
+	}
+
+	public function init() {
+        $this->addHookBefore('Page::render', function () {
+            
+            if(isset($_GET['webservice']) ){
+                if($_GET['action'] == 'getFilteredActivities') {?>
+                <div>
+                    <?php 
+                        foreach($this->pages->get(intval($_GET['pageid']))->activities() as $item) {?>
+                            <li><a class="strava-link" target="_blank" href="https://www.strava.com/activities/<?php echo $item->id ?>"><?php echo $item->name ?></a></li>
+                        <?php 
+                        } ?>
+                </div>
+                <?php 
+                }
+                exit();
+            }
+            
+            
+        });
+        
+	}
+}
+?>

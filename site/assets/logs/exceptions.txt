@@ -21,3 +21,7 @@
 2018-07-24 21:17:20	?	?	SQLSTATE[08S01]: Communication link failure: 1053 Server shutdown in progress (in /wire/core/WireDatabasePDO.php line 454)
 2018-07-24 21:19:12	admin	http://localhost:8888/runduro/processwire/page/edit/?id=1018	SQLSTATE[HY000]: General error: 2006 MySQL server has gone away (in /wire/core/WireCache.php line 704)
 2018-07-24 21:19:12	?	?	SQLSTATE[08S01]: Communication link failure: 1053 Server shutdown in progress (in /wire/core/WireDatabasePDO.php line 454)
+2018-07-27 14:50:11	?	?	Unable to load WireDatabasePDO - SQLSTATE[HY000] [2002] No such file or directory (in /wire/core/WireDatabasePDO.php line 217)
+2018-07-27 14:50:11	?	?	SQLSTATE[HY000] [2002] No such file or directory (in /wire/core/ProcessWire.php line 377)
+2018-07-27 14:50:17	?	?	Unable to load WireDatabasePDO - SQLSTATE[HY000] [2002] No such file or directory (in /wire/core/WireDatabasePDO.php line 217)
+2018-07-27 14:50:17	?	?	SQLSTATE[HY000] [2002] No such file or directory (in /wire/core/ProcessWire.php line 377)

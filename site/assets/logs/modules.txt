@@ -35,3 +35,17 @@
 2018-07-24 16:41:05	admin	http://localhost:8888/runduro/processwire/module/	Saved module info caches
 2018-07-24 16:41:22	admin	http://localhost:8888/runduro/processwire/module/edit?name=GetStravaSegments	Saved module 'GetStravaSegments' config data
 2018-07-24 16:41:26	admin	http://localhost:8888/runduro/processwire/module/edit?name=GetStravaSegments&collapse_info=1	Saved module 'GetStravaSegments' config data
+2018-07-26 22:53:52	admin	http://localhost:8888/runduro/processwire/module/?reset=1	Saved module info caches
+2018-07-26 22:54:01	admin	http://localhost:8888/runduro/processwire/module/	Installed module 'Webservices'
+2018-07-26 22:54:01	admin	http://localhost:8888/runduro/processwire/module/	Saved module info caches
+2018-07-26 23:04:07	admin	http://localhost:8888/runduro/processwire/module/edit?name=Webservices	Saved module 'Webservices' config data
+2018-07-27 18:47:49	admin	http://localhost:8888/stirally/processwire/module/	Installed module 'PagePathHistory'
+2018-07-27 18:47:49	admin	http://localhost:8888/stirally/processwire/module/	Saved module info caches
+2018-07-27 18:47:53	admin	http://localhost:8888/stirally/processwire/module/edit?name=PagePathHistory	Saved module 'PagePathHistory' config data
+2018-07-27 18:48:47	admin	http://localhost:8888/stirally/processwire/module/download/	Saved module info caches
+2018-07-27 18:48:48	admin	http://localhost:8888/stirally/processwire/module/download/	Saved module info caches
+2018-07-27 18:48:51	admin	http://localhost:8888/stirally/processwire/module/	Installed module 'PageRenameOptions'
+2018-07-27 18:48:51	admin	http://localhost:8888/stirally/processwire/module/	Saved module info caches
+2018-07-27 18:48:54	admin	http://localhost:8888/stirally/processwire/module/edit?name=PageRenameOptions	Saved module 'PageRenameOptions' config data
+2018-07-27 18:50:40	admin	http://localhost:8888/stirally/processwire/module/edit?name=PageRenameOptions	Saved module 'PageRenameOptions' config data
+2018-07-27 18:50:44	admin	http://localhost:8888/stirally/processwire/module/edit?name=PageRenameOptions&collapse_info=1	Saved module 'PageRenameOptions' config data

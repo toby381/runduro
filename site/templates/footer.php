@@ -1,2 +1,5 @@
-	</body>
+<section class="footer">
+
+</section>	
+</body>
 </html>
