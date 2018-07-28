@@ -4,3 +4,4 @@
 2018-07-27 16:48:53	admin	http://localhost:8888/stirally/processwire/login/	Successful login for 'admin'
 2018-07-27 18:42:21	admin	http://localhost:8888/stirally/processwire/login/	Successful login for 'admin'
 2018-07-27 20:40:49	?	?	User 'admin' - Error: Session fingerprint changed (IP address or useragent) (IP: 0.0.0.0)
+2018-07-27 21:50:19	admin	http://localhost:8888/stirally/processwire/login/	Successful login for 'admin'

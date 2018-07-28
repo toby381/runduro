@@ -56,8 +56,15 @@ class GetStravaSegments extends WireData implements Module {
 	public function init() {
         $this->addHookMethod("Page::strava", $this, 'keepLoggedInStrava');
         $this->addHookMethod("Page::activities", $this, 'getUserActivities');
+        $this->addHookMethod("Page::addEffort", $this, 'addEffort');
         $this->pages->addHookBefore('save', $this, 'getRouteData'); 
         $this->pages->addHookBefore('save', $this, 'getSegmentsData'); 
+        
+        $this->addHookBefore('Page::render', function () {
+            if($_GET['action'] == 'addEffort') {
+                $this->addEffort();
+            }
+        });        
 	}
 
 	/**
@@ -144,6 +151,15 @@ class GetStravaSegments extends WireData implements Module {
 
     }
     
+    public function authUser() {
+        $api = $this->connectToStrava(true);
+        $code = isset($_COOKIE["code"]) ? $_COOKIE["code"] : $_GET["code"];
+        $user = $api->tokenExchange($code);
+        $api->setAccessToken($user->access_token);
+        
+        return $api;
+    }
+    
     public function getUserActivities($event) {
         $page = $event->object;
         $api = $this->connectToStrava(true);
@@ -177,5 +193,25 @@ class GetStravaSegments extends WireData implements Module {
         
         return $filtered_activities;
     }
+    
+    public function addEffort() {
+        $api = $this->connectToStrava(true);
+        $code = isset($_COOKIE["code"]) ? $_COOKIE["code"] : $_GET["code"];
+        $user = $api->tokenExchange($code);
+        $api->setAccessToken($user->access_token);
+        $name = $user->athlete->firstname . ' ' . $user->athlete->lastname;
+        
+        $activity = $api->get('activities/' . $_GET['activity']);
+
+        $this->pages->add('effort', $this->page->id, [
+            'title' => $name . ' ' . $activity->id,
+            'activityID' => $activity->id,
+            'athleteID' => $user->athlete->id,
+            'time' => $activity->elapsed_time,
+            'athlete_name' => $name
+            
+        ]);
+    }
 
 }
+

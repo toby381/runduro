@@ -17,15 +17,22 @@ class Webservices extends WireData implements Module {
         $this->addHookBefore('Page::render', function () {
             
             if(isset($_GET['webservice']) ){
-                if($_GET['action'] == 'getFilteredActivities') {?>
-                <div>
-                    <?php 
-                        foreach($this->pages->get(intval($_GET['pageid']))->activities() as $item) {?>
-                            <li><a class="strava-link" target="_blank" href="https://www.strava.com/activities/<?php echo $item->id ?>"><?php echo $item->name ?></a></li>
+                $action = $_GET['action'];
+                if($action == 'getFilteredActivities') {?>
+                    <div>
                         <?php 
-                        } ?>
-                </div>
-                <?php 
+                            $pageid = $_GET['pageid'];
+                            $page = $this->pages->get(intval($pageid));
+                            foreach($page->activities() as $item) {?>
+                                <li><?php echo date( "d. M-Y H:i", strtotime( $item->start_date_local ) ); ?>: 
+                                    
+                                    <a class="strava-link" target="_blank" href="https://www.strava.com/activities/<?php echo $item->id ?>"><?php echo $item->name ?></a> / 
+                                    
+                                    <a href="<?php echo $page->httpUrl; ?>?action=addEffort&activity=<?php echo $item->id; ?>">Registrer resultat</a></li>
+                            <?php 
+                            } ?>
+                    </div>
+                    <?php 
                 }
                 exit();
             }
@@ -36,3 +43,4 @@ class Webservices extends WireData implements Module {
 	}
 }
 ?>
+

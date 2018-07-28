@@ -65,13 +65,15 @@
 <section data-type="page"  id="join" class="content">
     <div id="myActivities">
         <button type="button">View my matched actitities</button>
+        <img class="loader" style="display: none; margin: 0 auto;" src="<?php echo $config->urls->templates?>images/Gear-9.2s-200px.gif" />
     </div>
 </section>
 
 <script>
     function loadUserRuns() {
-        $('#myActivities button').html('loading');
-        $.ajax({url:'/stirally/?webservice', data: {action: 'getFilteredActivities', pageid: <?php echo $page->id ?>}, method: 'get'}).done(function(data){
+        $('#myActivities button').hide();
+        $('#myActivities .loader').fadeIn();
+        $.ajax({url:'<?php echo $config->urls->root?>?webservice', data: {action: 'getFilteredActivities', pageid: <?php echo $page->id ?>}, method: 'get'}).done(function(data){
             $('#myActivities').html(data);
         });
     }

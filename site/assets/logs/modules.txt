@@ -49,3 +49,5 @@
 2018-07-27 18:48:54	admin	http://localhost:8888/stirally/processwire/module/edit?name=PageRenameOptions	Saved module 'PageRenameOptions' config data
 2018-07-27 18:50:40	admin	http://localhost:8888/stirally/processwire/module/edit?name=PageRenameOptions	Saved module 'PageRenameOptions' config data
 2018-07-27 18:50:44	admin	http://localhost:8888/stirally/processwire/module/edit?name=PageRenameOptions&collapse_info=1	Saved module 'PageRenameOptions' config data
+2018-07-28 00:08:38	admin	http://localhost:8888/stirally/rolige-hoydemeter-i-skullerudasen/?action=addEffort&activity=1717282654	Failed to init module: GetStravaSegments - Unknown Selector operator: '' -- was your selector value properly escaped?
+2018-07-28 00:09:35	admin	http://localhost:8888/stirally/rolige-hoydemeter-i-skullerudasen/?action=addEffort&activity=1717282654	Failed to init module: GetStravaSegments - Unknown Selector operator: '' -- was your selector value properly escaped?
