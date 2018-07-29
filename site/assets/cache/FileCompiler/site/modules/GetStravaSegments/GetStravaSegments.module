@@ -57,12 +57,17 @@ class GetStravaSegments extends WireData implements Module {
         $this->addHookMethod("Page::strava", $this, 'keepLoggedInStrava');
         $this->addHookMethod("Page::activities", $this, 'getUserActivities');
         $this->addHookMethod("Page::addEffort", $this, 'addEffort');
+        $this->addHookMethod("Page::isStravaConnected", $this, 'isStravaConnected');
         $this->pages->addHookBefore('save', $this, 'getRouteData'); 
         $this->pages->addHookBefore('save', $this, 'getSegmentsData'); 
         
-        if($_GET['action'] == 'addEffort') {
-            addEffort($this->page);
-        }
+        $this->addHookBefore('Page::render', function () {
+            if($_POST['action'] == 'addEffort') {
+                if(!$this->page->children('activityID=' . $_POST['activity'])->count) {
+                    $this->addEffort();
+                }
+            }
+        });        
 	}
 
 	/**
@@ -105,6 +110,12 @@ class GetStravaSegments extends WireData implements Module {
             }
         } 
 	}
+    
+    public function isStravaConnected($event) {
+       $page = $event->object;
+        $event->return = $this->input->cookie("code") || $this->input->get("code") ;
+    }
+    
     
 	/**
 	 * get access to strava
@@ -185,32 +196,75 @@ class GetStravaSegments extends WireData implements Module {
                 }
             }
             if($count_matches == $total_segments) {
-                array_push($filtered_activities, $activity);
+                if(!$page->children('activityID=' . $activity->id)->count) {
+                     array_push($filtered_activities, $activity);
+                }
             }
         }
         
         return $filtered_activities;
     }
     
-    public function addEffort($page) {
+    public function addEffort() {
         $api = $this->connectToStrava(true);
         $code = isset($_COOKIE["code"]) ? $_COOKIE["code"] : $_GET["code"];
         $user = $api->tokenExchange($code);
         $api->setAccessToken($user->access_token);
         $name = $user->athlete->firstname . ' ' . $user->athlete->lastname;
         
-        $activity = $api->get('activities/' . $_GET['activity']);
-        
+        $activity = $api->get('activities/' . $_POST['activity']);
 
-        $this->pages->add('effort', $page, [
+        $raceEffort = $this->pages->add('effort', $this->page->id, [
             'title' => $name . ' ' . $activity->id,
             'activityID' => $activity->id,
             'athleteID' => $user->athlete->id,
             'time' => $activity->elapsed_time,
-            'athlete_name' => $name
-            
+            'athlete_name' => $name            
         ]);
-    }
+        
+        $newItems=[];
+        $seg_count=0;
+        $seg_max = count($this->page->segments);
+        $start_time = 0;
+        $end_time = 0;
+        $end_elapsed = 0;
+        $sum = 0;
+        foreach($this->page->segments as $segment) {
+            $seg_count++;
+            $raceSegmentID = $segment->{segmentID};
+            $efforts = $activity->segment_efforts;
+            foreach($efforts as $effort) {
+                if($raceSegmentID == $effort->segment->id) {
+                    if($seg_count == 1) {
+                        $start_time = $effort->start_date;
+                    } else if($seg_count == $seg_max) {
+                        $end_time = $effort->start_date;
+                        $end_elapsed = $effort->elapsed_time;
+                    }
 
+                    $item = $raceEffort->segments_effort->getNewItem();
+                    $item->segmentID = $effort->segment->id;
+                    $item->time = $effort->elapsed_time;
+                    $item->save();
+                    $newItems[] = $item;
+                    $sum += $effort->elapsed_time;
+                }
+            }
+        
+        }
+        $raceEffort->segments_effort->add($newItems);
+        $raceEffort->time = $this->findTotalTime($start_time, $end_time, $end_elapsed);
+        $raceEffort->sum = $sum;
+        $raceEffort->save();        
+    }
+    
+    public function findTotalTime($start, $end, $end_elapsed) {
+        $timeFirst  = strtotime($start);
+        $timeSecond = strtotime($end);
+        $differenceInSeconds = $timeSecond - $timeFirst;
+        return $differenceInSeconds + $end_elapsed;
+        
+    }
+        
 }
 

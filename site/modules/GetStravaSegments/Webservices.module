@@ -23,14 +23,24 @@ class Webservices extends WireData implements Module {
                         <?php 
                             $pageid = $_GET['pageid'];
                             $page = $this->pages->get(intval($pageid));
-                            foreach($page->activities() as $item) {?>
-                                <li><?php echo date( "d. M-Y H:i", strtotime( $item->start_date_local ) ); ?>: 
-                                    
-                                    <a class="strava-link" target="_blank" href="https://www.strava.com/activities/<?php echo $item->id ?>"><?php echo $item->name ?></a> / 
-                                    
-                                    <a href="<?php echo $page->httpUrl; ?>?action=addEffort&activity=<?php echo $item->id; ?>">Registrer resultat</a></li>
-                            <?php 
-                            } ?>
+                            $activities = $page->activities();
+                            if(count($activities) > 0) {
+                                foreach($activities as $item) {?>
+                                    <li><?php echo date( "d. M-Y H:i", strtotime( $item->start_date_local ) ); ?>: 
+
+                                        <a class="strava-link" target="_blank" href="https://www.strava.com/activities/<?php echo $item->id ?>"><?php echo $item->name ?></a> / 
+
+                                        <form style="display: inline-block;" action="<?php echo $page->httpUrl; ?>" method="post">
+                                            <input type="hidden" name="action" value="addEffort" />
+                                            <input type="hidden" name="activity" value="<?php echo $item->id; ?>" />
+                                            <input type="submit" value="Registrer resultat" />
+                                        </form>
+                                        <!--<a href="<?php echo $page->httpUrl; ?>?action=addEffort&activity=<?php echo $item->id; ?>">Registrer resultat</a>--></li>
+                                <?php 
+                                } 
+                            } else {
+                                echo "<p>Beklager, fant ingen nye matchende aktiviteter hos Strava. <br/><br /> Ut å løp!</p>";
+                            }?>
                     </div>
                     <?php 
                 }

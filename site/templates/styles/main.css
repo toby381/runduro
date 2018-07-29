@@ -187,16 +187,16 @@ h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 }
 
 .dashboard__about {
     width: auto;
     font-weight: 100;
-    color: var(--second-color);
+    /*color: var(--second-color);*/
 }
 .dashboard__about p {
-    font-size: 25px;
+    /*font-size: 25px;*/
 }
 .dashboard__stats {
     display: flex;
@@ -249,6 +249,33 @@ h1 {
     text-decoration: none;
     
 }
+
+
+.result__wrapper {
+   overflow-x: scroll;
+    max-width: 100%;
+}
+.result__table {
+    display: table;
+    width: 100%;
+    min-width: 600px;    
+}
+.result__row {
+    display: table-row;
+}
+
+.result__cell {
+    display: table-cell;
+    text-align: center;
+    font-weight: 100;
+    padding: .5rem;
+}
+.result__head .result__cell {
+    font-weight: 400;
+}
+
+
+
 .strava-link {
     color: var(--main-color);
 }
@@ -269,23 +296,23 @@ h1 {
 }
 
 button {
-font-size: 1rem;
-    margin: 1rem;
-color: #fff !important;
-text-transform: uppercase;
-background: #ed3330;
-padding: 20px;
-border-radius: 5px;
-display: inline-block;
-border: none;
-cursor: pointer;
+    padding: 0.5rem 2rem;
+    border:0.1em solid var(--main-color);
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color:var(--main-color);
+    text-align:center;
+    transition: all 0.2s;
+    cursor: pointer;
 }
 
 button:hover {
-background: #434343;
--webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
--moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
-transition: all 0.4s ease 0s;
+    color: #fff;
+    background-color:var(--main-color);
 }
     

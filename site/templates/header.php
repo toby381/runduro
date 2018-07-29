@@ -14,14 +14,14 @@
         <section class="header">
             <div class="logo"><a href="/stirally">STIRALLY</a></div>
 
-            <div class="login">     
+            <div class="login"> 
                 <?php
-                if(!isset($_COOKIE["code"])) {
+                if($page->isStravaConnected()) {
                     ?>
-                    <div><a href="<?php echo $page->strava('url'); ?>"><img width="124" src="<?php echo $config->urls->templates?>images/LogInWithStrava.png" /></a></div>
+                    <div><?php echo $page->strava('user')->athlete->firstname . ' ' . $page->strava('user')->athlete->lastname;  ?></div>
                 <?php } else {
                     ?>
-                    <div><?php echo $page->strava('user')->athlete->firstname . ' ' . $page->strava('user')->athlete->lastname;;  ?></div>
+                    <div><a href="<?php echo $page->strava('url'); ?>"><img width="124" src="<?php echo $config->urls->templates?>images/LogInWithStrava.png" /></a></div>
                 <?php }?>
             </div>
 
